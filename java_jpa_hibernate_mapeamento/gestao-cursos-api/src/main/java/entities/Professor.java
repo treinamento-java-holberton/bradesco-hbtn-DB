@@ -1,14 +1,13 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Professor {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String nomeCompleto;
@@ -17,7 +16,7 @@ public class Professor {
 
     private String email;
 
-    @OneToMany(mappedBy = "professor")
+    @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL)
     private Set<Curso> curso;
 
     public Set<Curso> getCurso() {

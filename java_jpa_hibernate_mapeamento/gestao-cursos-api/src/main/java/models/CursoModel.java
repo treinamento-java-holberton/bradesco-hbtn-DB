@@ -53,12 +53,12 @@ public class CursoModel {
     }
 
     //create
-    private void create(Curso curso) {
+    public void create(Curso curso) {
         executeAction(em -> em.persist(curso), "create");
     }
 
     //find by id
-    private Optional<Curso> findById(Long id) {
+    public Optional<Curso> findById(Long id) {
         Optional<Curso> output = Optional.empty();
         EntityManager em = getEntityManager();
         try {
@@ -72,7 +72,7 @@ public class CursoModel {
     }
 
     //find all
-    private Set<Curso> findAll() {
+    public Set<Curso> findAll() {
         EntityManager em = getEntityManager();
         Set<Curso> output = Set.of();
         try {
@@ -87,12 +87,12 @@ public class CursoModel {
     }
 
     //update
-    private void update(Curso curso){
+    public void update(Curso curso){
         executeAction(em -> em.merge(curso), "update");
     }
 
     //delete
-    private void delete(Curso curso) {
+    public void delete(Curso curso) {
         EntityManager em = getEntityManager();
         em.remove(em.contains(curso)? curso: em.merge(curso));
     }

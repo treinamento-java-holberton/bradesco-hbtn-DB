@@ -8,33 +8,33 @@ import java.util.Set;
 public class Aluno {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String nomeCompleto;
 
-    private String pessoa;
+    private String matricula;
 
     private Date nascimento;
 
     private String email;
 
-    @ManyToMany(mappedBy = "aluno")
-    @JoinColumn(name = "curso_id")
+    @ManyToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
     private Set<Curso> curso;
 
-    @OneToMany(mappedBy = "aluno")
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
     private Set<Telefone> telefone;
 
-    @OneToMany(mappedBy = "aluno")
-    private Aluno aluno;
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL)
+    private Set<Endereco> endereco;
 
 
-    public Aluno getAluno() {
-        return aluno;
+    public Set<Endereco> getEndereco() {
+        return endereco;
     }
 
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
+    public void setEndereco(Set<Endereco> endereco) {
+        this.endereco = endereco;
     }
 
     public Set<Curso> getCurso() {
@@ -77,12 +77,12 @@ public class Aluno {
         this.nomeCompleto = nomeCompleto;
     }
 
-    public String getPessoa() {
-        return pessoa;
+    public String getMatricula() {
+        return matricula;
     }
 
-    public void setPessoa(String pessoa) {
-        this.pessoa = pessoa;
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
     }
 
     public Set<Telefone> getTelefone() {

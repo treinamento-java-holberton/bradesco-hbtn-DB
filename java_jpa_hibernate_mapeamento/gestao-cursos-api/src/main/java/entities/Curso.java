@@ -7,20 +7,21 @@ import java.util.Set;
 public class Curso {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String nome;
 
     private String sigla;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private MaterialCurso materialCurso;
 
-    @ManyToOne
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "professor_id", nullable = false)
     private Professor professor;
 
-    @ManyToMany(mappedBy = "curso")
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "aluno_id", nullable = false)
     private Set<Aluno> aluno;
 

@@ -1,21 +1,19 @@
 package entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Telefone {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String DDD;
 
     private String numero;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name= "aluno_id", nullable = false)
     private Aluno aluno;
 
